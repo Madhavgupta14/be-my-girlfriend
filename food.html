@@ -1,64 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Food Selection</title>
-    <link rel="stylesheet" href="css/food.css" />
-  </head>
-  <body>
-    <div id="foodquestion">
-      <b>What food would you like to eat?</b>
-    </div>
 
-    <div class="food-selection">
-      <div class="food-item">
-        <img src="food/burgers.jpeg" alt="Burgers, fries and fried chicken" />
-        <label
-          ><input
-            type="checkbox"
-            name="food"
-            value="Burgers, fries and fried chicken"
-          />
-          burgers and fried chicken</label
-        >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What shall we eat? 🖤</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/food.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+</head>
+
+<body>
+  <div class="sparkles">
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+  </div>
+
+  <div class="page-content">
+    <p class="page-subtitle">"My baby here on earth…"</p>
+    <h1 class="page-title">What shall we eat?</h1>
+    <p class="selection-hint">Pick as many as you want, my treat 🖤</p>
+
+    <div class="selection-grid">
+      <div class="selection-item">
+        <img src="food/burgers.jpeg" alt="Burgers & fried chicken" />
+        <label><input type="checkbox" name="food" value="burgers" /> burgers & chicken</label>
       </div>
-      <div class="food-item">
-        <img src="food/dog.jpeg" alt="dog" />
-        <label
-          ><input type="checkbox" name="food" value="hotdog" /> hotdog</label
-        >
+      <div class="selection-item">
+        <img src="food/dog.jpeg" alt="Hot dog" />
+        <label><input type="checkbox" name="food" value="hotdog" /> hotdog</label>
       </div>
-      <div class="food-item">
-        <img src="food/koreanfood.jpeg" alt="koreanfood" />
-        <label
-          ><input type="checkbox" name="food" value="Korean food" /> korean
-          food</label
-        >
+      <div class="selection-item">
+        <img src="food/koreanfood.jpeg" alt="Korean food" />
+        <label><input type="checkbox" name="food" value="korean" /> korean food</label>
       </div>
-      <div class="food-item">
-        <img src="food/pasta.jpeg" alt="pasta" />
+      <div class="selection-item">
+        <img src="food/pasta.jpeg" alt="Pasta" />
         <label><input type="checkbox" name="food" value="pasta" /> pasta</label>
       </div>
-      <div class="food-item">
-        <img src="food/pizza.jpeg" alt="pizza" />
+      <div class="selection-item">
+        <img src="food/pizza.jpeg" alt="Pizza" />
         <label><input type="checkbox" name="food" value="pizza" /> pizza</label>
       </div>
-      <div class="food-item">
-        <img src="food/salad.jpeg" alt="salad" />
+      <div class="selection-item">
+        <img src="food/salad.jpeg" alt="Salad" />
         <label><input type="checkbox" name="food" value="salad" /> salad</label>
       </div>
-      <div class="food-item">
-        <img src="food/steak.jpeg" alt="steak" />
+      <div class="selection-item">
+        <img src="food/steak.jpeg" alt="Steak" />
         <label><input type="checkbox" name="food" value="steak" /> steak</label>
       </div>
-      <div class="food-item">
-        <img src="food/sushi.jpeg" alt="sushi" />
+      <div class="selection-item">
+        <img src="food/sushi.jpeg" alt="Sushi" />
         <label><input type="checkbox" name="food" value="sushi" /> sushi</label>
       </div>
     </div>
-    <button class="button" onclick="location.href='dessert.html'">
-      Continue UWU
+
+    <button class="btn btn-yes" onclick="location.href='dessert.html'">
+      <span>Next: Desserts ♥</span>
     </button>
-  </body>
+  </div>
+
+  <button class="music-toggle" id="musicToggle" title="Toggle music">♪</button>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    // Make entire card clickable for checkbox
+    document.querySelectorAll('.selection-item').forEach(item => {
+      item.addEventListener('click', function (e) {
+        if (e.target.tagName !== 'INPUT') {
+          const cb = this.querySelector('input[type="checkbox"]');
+          cb.checked = !cb.checked;
+        }
+      });
+    });
+  </script>
+  <script src="js/music.js"></script>
+</body>
+
 </html>

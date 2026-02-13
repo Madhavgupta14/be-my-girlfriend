@@ -1,32 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Be My Valentine</title>
-    <link rel="stylesheet" href="css/valentine.css" />
-  </head>
-  <body>
-    <div id="valentineQuestion"><b>Will you be my valentine?</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
-    </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
-    <br />
-    <img src="cat.gif" alt="cat asking question" class="responsive" />
 
-    <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine?</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/valentine.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+</head>
+
+<body>
+  <!-- Sparkle particles -->
+  <div class="sparkles">
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+  </div>
+
+  <div class="page-content">
+    <div class="glass-card" id="mainCard">
+      <p class="page-subtitle">"My love, mine all mine…"</p>
+      <h1 class="page-title">Will you be my Valentine?</h1>
+      <p class="subtitle-small">— from someone who looks up to you (literally) 🖤</p>
+
+      <img src="cat.gif" alt="cute cat" class="hero-gif" />
+
+      <div class="button-group">
+        <button class="btn btn-yes" id="yesButton" onclick="location.href='thankyou.html'">
+          <span>Yes ♥</span>
+        </button>
+        <button class="btn btn-no" id="noButton">
+          <span>I no no wanna o(╥﹏╥)o</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Music toggle -->
+  <button class="music-toggle" id="musicToggle" title="Toggle music">♪</button>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    // === "No" button behavior: dodges away + Yes grows ===
+    const noBtn = document.getElementById('noButton');
+    const yesBtn = document.getElementById('yesButton');
+    const card = document.getElementById('mainCard');
+    let clickCount = 0;
+
+    const noTexts = [
+      "I no no wanna o(╥﹏╥)o",
+      "Are you sure? 🥺",
+      "Think again...",
+      "Please? 🖤",
+      "Pretty please?",
+      "I'll be sad 😢",
+      "Don't do this 💔",
+      "NO IS NOT AN OPTION",
+      "CLICK YES 🖤🖤🖤",
+      "YESYESYESYES"
+    ];
+
+    noBtn.addEventListener('click', function (e) {
+      clickCount++;
+
+      // Grow yes button
+      const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+      yesBtn.style.fontSize = (currentSize + 4) + 'px';
+      yesBtn.style.padding = `${14 + clickCount * 2}px ${36 + clickCount * 4}px`;
+
+      // Shrink no button
+      const noSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+      if (noSize > 6) {
+        noBtn.style.fontSize = Math.max(6, noSize - 1.5) + 'px';
+        noBtn.style.padding = `${Math.max(4, 10 - clickCount)}px ${Math.max(8, 28 - clickCount * 2)}px`;
+      }
+
+      // Change no button text
+      if (clickCount < noTexts.length) {
+        noBtn.querySelector('span').textContent = noTexts[clickCount];
+      }
+
+      // Move no button to random position within card
+      if (clickCount >= 3) {
+        const cardRect = card.getBoundingClientRect();
+        const maxX = cardRect.width - noBtn.offsetWidth - 20;
+        const maxY = 60;
+        noBtn.style.position = 'relative';
+        noBtn.style.left = (Math.random() * maxX - maxX / 2) + 'px';
+        noBtn.style.top = (Math.random() * maxY - maxY / 2) + 'px';
+        noBtn.style.transition = 'all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+      }
+
+      // After many clicks, just redirect
+      if (clickCount >= 10) {
+        location.href = 'thankyou.html';
+      }
+    });
+
+  </script>
+  <script src="js/music.js"></script>
+</body>
+
 </html>

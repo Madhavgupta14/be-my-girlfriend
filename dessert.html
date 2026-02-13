@@ -1,54 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dessert</title>
-    <link rel="stylesheet" href="css/dessert.css" />
-  </head>
-  <body>
-    <div id="dessertquestion">Which dessert we eatin cuh</div>
 
-    <div class="dessert-selection">
-      <div class="dessert-item">
-        <img src="food/boba.jpeg" alt="boba" />
-        <label
-          ><input type="checkbox" name="dessert" value="boba" /> boba</label
-        >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desserts 🖤</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/dessert.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖤</text></svg>">
+</head>
+
+<body>
+  <div class="sparkles">
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+  </div>
+
+  <div class="page-content">
+    <p class="page-subtitle">"Showed me what my heart was worth…"</p>
+    <h1 class="page-title">Something sweet for someone sweeter</h1>
+    <p class="selection-hint">Because you deserve all the desserts 🖤</p>
+
+    <div class="selection-grid">
+      <div class="selection-item">
+        <img src="food/boba.jpeg" alt="Boba" />
+        <label><input type="checkbox" name="dessert" value="boba" /> boba</label>
       </div>
-      <div class="dessert-item">
-        <img src="food/churro.jpeg" alt="churro" />
-        <label
-          ><input type="checkbox" name="dessert" value="churro" /> churro</label
-        >
+      <div class="selection-item">
+        <img src="food/churro.jpeg" alt="Churro" />
+        <label><input type="checkbox" name="dessert" value="churro" /> churro</label>
       </div>
-      <div class="dessert-item">
-        <img src="food/che.jpeg" alt="che" />
-        <label><input type="checkbox" name="dessert" value="che" /> che</label>
+      <div class="selection-item">
+        <img src="food/che.jpeg" alt="Chè" />
+        <label><input type="checkbox" name="dessert" value="che" /> chè</label>
       </div>
-      <div class="dessert-item">
-        <img src="food/mochi.jpeg" alt="mochi" />
-        <label
-          ><input type="checkbox" name="dessert" value="mochi" /> mochi</label
-        >
+      <div class="selection-item">
+        <img src="food/mochi.jpeg" alt="Mochi" />
+        <label><input type="checkbox" name="dessert" value="mochi" /> mochi</label>
       </div>
-      <div class="dessert-item">
-        <img src="food/randombun.jpeg" alt="randombun" />
-        <label
-          ><input type="checkbox" name="dessert" value="randombun" /> random
-          bun</label
-        >
+      <div class="selection-item">
+        <img src="food/randombun.jpeg" alt="Random bun" />
+        <label><input type="checkbox" name="dessert" value="randombun" /> random bun</label>
       </div>
-      <div class="dessert-item">
-        <img src="food/taiyaki.jpeg" alt="taiyaki" />
-        <label
-          ><input type="checkbox" name="dessert" value="taiyaki" />
-          taiyaki</label
-        >
+      <div class="selection-item">
+        <img src="food/taiyaki.jpeg" alt="Taiyaki" />
+        <label><input type="checkbox" name="dessert" value="taiyaki" /> taiyaki</label>
       </div>
     </div>
-    <button class="button" onclick="location.href='activities.html'">
-      Continue UWU
+
+    <button class="btn btn-yes" onclick="location.href='activities.html'">
+      <span>Next: Activities ♥</span>
     </button>
-  </body>
+  </div>
+
+  <button class="music-toggle" id="musicToggle" title="Toggle music">♪</button>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    document.querySelectorAll('.selection-item').forEach(item => {
+      item.addEventListener('click', function (e) {
+        if (e.target.tagName !== 'INPUT') {
+          const cb = this.querySelector('input[type="checkbox"]');
+          cb.checked = !cb.checked;
+        }
+      });
+    });
+  </script>
+  <script src="js/music.js"></script>
+</body>
+
 </html>

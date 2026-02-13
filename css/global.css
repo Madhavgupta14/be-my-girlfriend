@@ -1,0 +1,549 @@
+/* ============================================
+   Valentine — Dark Elegant Design System
+   Her fav color: BLACK. Aesthetic: Sophisticated.
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Quicksand:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Core palette — black + gold + champagne */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-card-border: rgba(255, 255, 255, 0.08);
+  --accent-gold: #d4af37;
+  --accent-rose: #c9a0a0;
+  --accent-champagne: #f5e6d0;
+  --accent-blush: #e8c4c4;
+  --accent-warm: #f0d5b8;
+  --text-primary: #f5f0eb;
+  --text-secondary: rgba(245, 240, 235, 0.6);
+  --text-lyric: rgba(212, 175, 55, 0.7);
+  --glow-gold: rgba(212, 175, 55, 0.15);
+  --glow-rose: rgba(201, 160, 160, 0.1);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.08);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Quicksand', 'Segoe UI', sans-serif;
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* ---------- Animated gradient background ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(201, 160, 160, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(100, 60, 80, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a0f 0%, #12101a 40%, #0f0d15 100%);
+  z-index: -2;
+  animation: bgShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgShift {
+  0% { opacity: 1; }
+  100% { opacity: 0.85; transform: scale(1.02); }
+}
+
+/* ---------- Floating Stars / Sparkles ---------- */
+.sparkles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--accent-gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkleFloat linear infinite;
+}
+
+.sparkle::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: inherit;
+  border-radius: 50%;
+  filter: blur(3px);
+  opacity: 0.5;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) scale(1);
+  }
+}
+
+/* Generate 15 sparkle variations */
+.sparkle:nth-child(1)  { left: 5%;  animation-duration: 8s;  animation-delay: 0s; }
+.sparkle:nth-child(2)  { left: 12%; animation-duration: 12s; animation-delay: 1s; }
+.sparkle:nth-child(3)  { left: 20%; animation-duration: 9s;  animation-delay: 2.5s; }
+.sparkle:nth-child(4)  { left: 30%; animation-duration: 11s; animation-delay: 0.5s; }
+.sparkle:nth-child(5)  { left: 38%; animation-duration: 7s;  animation-delay: 3s; }
+.sparkle:nth-child(6)  { left: 45%; animation-duration: 10s; animation-delay: 1.5s; }
+.sparkle:nth-child(7)  { left: 55%; animation-duration: 13s; animation-delay: 4s; }
+.sparkle:nth-child(8)  { left: 62%; animation-duration: 8s;  animation-delay: 2s; }
+.sparkle:nth-child(9)  { left: 70%; animation-duration: 11s; animation-delay: 0.8s; }
+.sparkle:nth-child(10) { left: 78%; animation-duration: 9s;  animation-delay: 3.5s; }
+.sparkle:nth-child(11) { left: 85%; animation-duration: 14s; animation-delay: 1.2s; }
+.sparkle:nth-child(12) { left: 92%; animation-duration: 10s; animation-delay: 2.8s; }
+.sparkle:nth-child(13) { left: 25%; animation-duration: 15s; animation-delay: 5s; width: 2px; height: 2px; }
+.sparkle:nth-child(14) { left: 50%; animation-duration: 16s; animation-delay: 3.2s; width: 2px; height: 2px; }
+.sparkle:nth-child(15) { left: 75%; animation-duration: 12s; animation-delay: 6s; width: 4px; height: 4px; }
+
+/* ---------- Glassmorphism Card ---------- */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--bg-card-border);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  animation: fadeInUp 1s var(--ease-smooth) backwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.4;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Typography ---------- */
+.page-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.page-subtitle {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  color: var(--text-lyric);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  animation: lyricGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes lyricGlow {
+  from { opacity: 0.6; }
+  to { opacity: 1; text-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 14px 36px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.02));
+  color: var(--accent-champagne);
+  cursor: pointer;
+  transition: all 0.4s var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-gold), #c9a040);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-smooth);
+  border-radius: inherit;
+}
+
+.btn:hover {
+  border-color: var(--accent-gold);
+  color: #0a0a0f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.15); }
+  50% { box-shadow: 0 0 20px 5px rgba(212, 175, 55, 0.1); }
+}
+
+.btn-no {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 10px 28px;
+}
+
+.btn-no:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-no:hover::before {
+  opacity: 0;
+}
+
+/* ---------- Selection Grid (food, dessert, activities) ---------- */
+.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.2rem;
+  padding: 1rem 0;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto 2rem;
+}
+
+.selection-item {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--bg-card-border);
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-smooth);
+  position: relative;
+}
+
+.selection-item:hover {
+  border-color: rgba(212, 175, 55, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.05);
+}
+
+.selection-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.8rem;
+  transition: transform 0.4s var(--ease-smooth);
+  filter: brightness(0.9);
+}
+
+.selection-item:hover img {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+.selection-item label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: color 0.3s;
+}
+
+.selection-item:hover label {
+  color: var(--text-primary);
+}
+
+/* ---------- Heart Checkbox ---------- */
+.selection-item input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s var(--ease-smooth);
+  flex-shrink: 0;
+}
+
+.selection-item input[type="checkbox"]::after {
+  content: '♡';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: transparent;
+  transition: all 0.3s var(--ease-bounce);
+}
+
+.selection-item input[type="checkbox"]:checked {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.selection-item input[type="checkbox"]:checked::after {
+  content: '♥';
+  color: #0a0a0f;
+  font-size: 13px;
+}
+
+.selection-item:has(input[type="checkbox"]:checked) {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
+}
+
+/* ---------- GIF / Image styling ---------- */
+.hero-gif {
+  max-width: 280px;
+  width: 80%;
+  border-radius: 20px;
+  margin: 1.5rem auto;
+  display: block;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Music Toggle ---------- */
+.music-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s var(--ease-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.music-toggle:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: scale(1.1);
+}
+
+.music-toggle.playing {
+  animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.2); }
+  50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+}
+
+/* ---------- Page transition ---------- */
+.page-content {
+  animation: fadeInUp 0.8s var(--ease-smooth) backwards;
+  animation-delay: 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+/* ---------- Scrollbar (dark) ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 3px;
+}
+
+/* ---------- Date input styling ---------- */
+input[type="date"] {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+  -webkit-appearance: none;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7) sepia(1) saturate(2) hue-rotate(10deg);
+  cursor: pointer;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    width: 92%;
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    width: 94%;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    font-size: 0.9rem;
+  }
+
+  .hero-gif {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-card {
+    padding: 1.5rem 1.2rem;
+    border-radius: 16px;
+  }
+
+  .selection-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    width: 96%;
+  }
+
+  .selection-item {
+    padding: 0.7rem;
+    border-radius: 12px;
+  }
+
+  .selection-item img {
+    border-radius: 8px;
+  }
+
+  .music-toggle {
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .selection-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1000px;
+  }
+}
