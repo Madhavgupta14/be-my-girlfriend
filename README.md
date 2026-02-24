@@ -19,10 +19,6 @@ This project is built using simple yet powerful web technologies:
 - CSS
 - JavaScript
 
-## How to View
-
-To experience "Will You Be My Valentine?", simply visit [https://byquangthanh.github.io/valentine.github.io/](https://byquangthanh.github.io/valentine.github.io/) from any modern web browser.
-
 ## How to Contribute
 
 Contributions to the "Will You Be My Valentine?" project are more than welcome. Whether it's suggesting new features, improving the design, or fixing bugs, here's how you can contribute:
